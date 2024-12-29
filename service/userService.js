@@ -119,8 +119,10 @@ exports.updateUserByID = async (req, res, next) => {
   } catch (err) {
     console.log(err.message);
     // error duplicate column user
-    if (err.message.split(" ")[0] === "duplicate") {
+    if (err.message.split(" ")[6] === `"users_username_key"`) {
       errors.MappingError(next, 404, "Username is duplicate");
+    } else if (err.message.split(" ")[6] === `"users_email_key"`) {
+      errors.MappingError(next, 404, "Email is duplicate");
     }
     //error everything
     else {
