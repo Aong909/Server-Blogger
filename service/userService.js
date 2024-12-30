@@ -199,8 +199,10 @@ exports.LogIn = async (req, res, next) => {
         .status(200)
         .cookie("token", token, {
           maxAge: 1000 * 60 * 60 * 24,
-          // secure: true,
-          // httpOnly: true,
+          sameSite: "None",
+          secure: true,
+          httpOnly: true,
+          path: "/",
         })
         .json({ status: "success", data: user.rows[0] });
     }
