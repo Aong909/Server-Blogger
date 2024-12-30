@@ -25,7 +25,11 @@ app.use(morgan("dev"));
 app.use(
   cors({
     credentials: true,
-    origin: "*",
+    origin: [
+      "http://localhost:5173",
+      "https://astounding-tarsier-99ba45.netlify.app/",
+      "https://ssblogger.netlify.app/",
+    ],
   })
 );
 
