@@ -28,12 +28,12 @@ app.use(
     origin: [
       "http://localhost:5173",
       "https://astounding-tarsier-99ba45.netlify.app/",
-      "https://ssblogger.netlify.app/",
+      "https://ssblogger.netlify.app",
     ],
   })
 );
 
-app.use(setCorsHeaders);
+// app.use(setCorsHeaders);
 
 env.config({ path: "./config.env" });
 
