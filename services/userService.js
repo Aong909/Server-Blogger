@@ -231,8 +231,8 @@ exports.saveContent = async (req, res, next) => {
       //save content
       await pool.query(
         `INSERT INTO public."Blogs"(
-                  blog_content, user_id,created_at)
-                  VALUES ($1, $2,$3);`,
+                  blog_content, user_id,created_at,updated_at)
+                  VALUES ($1, $2,$3,$3);`,
         [JSON.stringify(content), user_id, sqlTimestamp]
       );
       //get content_id
