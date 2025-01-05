@@ -4,7 +4,9 @@ const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
-const userRouter = require("./router/userRouter");
+const userRouter = require("./routers/userRouter");
+const contentRouter = require("./routers/contentRouter");
+const optionRouter = require("./routers/optionRouter");
 const errors = require("./util/errors");
 
 function setCorsHeaders(req, res, next) {
@@ -40,6 +42,8 @@ env.config({ path: "./config.env" });
 const port = process.env.PORT_SERVER;
 
 app.use("/api/v1/", userRouter);
+app.use("/api/v1/", contentRouter);
+app.use("/api/v1/", optionRouter);
 
 app.get("/test", (req, res) => {
   res.send("test");
