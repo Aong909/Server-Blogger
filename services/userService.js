@@ -624,7 +624,7 @@ exports.getTopFollow = async (req, res, next) => {
                 LIMIT $1;`;
     const response = await pool.query(sql, [limit]);
     if (response.rowCount === 0) {
-      return errors.MappingError(next, 401, "Data not found");
+      return res.status(200).json({ status: "Success", data: [] });
     }
     return res.status(200).json({ status: "Success", data: response.rows });
   } catch (error) {
