@@ -14,6 +14,5 @@ exports.genToken = async (obj) => {
 };
 
 exports.verifyToken = async (token) => {
-  console.log("Token ==>", token);
   return jwt.verify(token, process.env.SECRET);
 };

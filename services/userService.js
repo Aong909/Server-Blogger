@@ -619,10 +619,11 @@ exports.getTopFollow = async (req, res, next) => {
 	                COUNT(*) AS FOLLOWER
                 FROM PUBLIC."Follows"
                 LEFT JOIN PUBLIC."Users" ON "Users".USER_ID = "Follows".FOLLOWEE_ID
+                where  "Users".USER_ID != $2
                 GROUP BY "Users".USER_ID
                 ORDER BY FOLLOWER DESC
                 LIMIT $1;`;
-    const response = await pool.query(sql, [limit]);
+    const response = await pool.query(sql, [limit, req.user.userID]);
     if (response.rowCount === 0) {
       return res.status(200).json({ status: "Success", data: [] });
     }

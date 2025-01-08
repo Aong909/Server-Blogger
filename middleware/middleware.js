@@ -4,8 +4,6 @@ const enCode = require("../util/enCode");
 exports.verifyAuthToken = async (req, res, next) => {
   try {
     const authToken = req.cookies.token;
-    console.log("cookie", req.cookies);
-    console.log("authToken", authToken);
 
     if (!authToken) {
       errors.MappingError(next, 401, "Authorization not found");
